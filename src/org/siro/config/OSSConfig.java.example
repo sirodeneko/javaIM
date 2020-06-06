@@ -1,0 +1,11 @@
+package org.siro.config;
+
+// 相关参数请自行于阿里云oss申请
+public class OSSConfig {
+	static public String endpoint = "";//必填
+	static public String accessKeyId = "";//必填
+	static public String accessKeySecret = "";//必填
+	static public String bucketName = "";//必填
+	static public String objectName = "<yourObjectName>";
+	static public String securityToken = "securityToken";
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--启用spring的一些annotation -->
+    <context:annotation-config/>
+
+    <!--草！！！必须加这个才能扫描注解，淦-->
+    <mvc:annotation-driven/>
+
+    <!--静态资源映射-->
+    <mvc:default-servlet-handler/>
+    <!--如果发现是静态资源的请求，就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处-->
+    
+    <!--添加扫描器扫描的包，不然无法扫描这个包，这个包的注解无法生效-->
+    <context:component-scan base-package="org.siro.*"/>
+
+    <!--配置视图解析器--><!--给所有返回增加一个前缀 /views 后缀 .jsp -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost/javatest?useUnicode=true&amp;characterEncoding=utf-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+    <!-- 配置SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+        <!-- 设置sessionFactory的数据源属性 -->
+        <property name="dataSource" ref="dataSource" />
+
+        <!-- 扫描实体类里的注解 -->
+        <property name="annotatedClasses">
+            <list>
+                <value>org.siro.entity.User</value>
+                <value>org.siro.entity.Groups</value>
+                <value>org.siro.entity.UserAndGroup</value>
+            </list>
+        </property>
+
+        <!-- 设置hibernate的 相关属性，这样就省去了hibernate.cfg.xml文件 -->
+        <property name="hibernateProperties">
+            <props>
+                <!--hibernate.dialect 只是Hibernate使用的数据库方言,就是要用Hibernate连接那种类型的数据库服务器。-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <!--update(常用):如果没有schema就创建，有就更新。  -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。FetchSize设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->
+                <prop key="hibernate.show_sql">true</prop>
+
+                <prop key="hibernate.format_sql">true</prop>
+
+                <prop key="hibernate.connection.autocommit">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 配置一个声明式事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--事务配置-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截的路径/*一级路径 /**所有路径-->
+            <mvc:mapping path="/**"/>
+            <!--排除登录页面-->
+            <mvc:exclude-mapping path="/index"/>
+            <mvc:exclude-mapping path="/Login"/>
+            <!-- 拦截器类-->
+            <bean class="org.siro.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
+</beans>

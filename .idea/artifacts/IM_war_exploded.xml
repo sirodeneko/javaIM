@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="IM:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/IM_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="IM/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="IM" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="slf4j-api-1.7.22" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.37-bin" />
+          <element id="library" level="project" name="lib (2)" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
