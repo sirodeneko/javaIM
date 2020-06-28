@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.siro.entity.Groups;
 import org.siro.entity.ImgGet;
 import org.siro.entity.User;
+import org.siro.handler.SpringWebSocketHandler;
 import org.siro.service.GroupService;
 import org.siro.service.impl.OSSServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,7 @@ public class JsonApiController {
 		}else{
 			responseBody.put("code",200);
 			responseBody.put("groups",groups);
+			SpringWebSocketHandler.addRoom(user.getId(),groups.getId());
 		}
 		return JSON.toJSONString(responseBody);
 	}
@@ -102,10 +104,11 @@ public class JsonApiController {
 		HashMap<String,Object> responseBody = new HashMap<String, Object>();
 		if(groups==null){
 			responseBody.put("code",500);
-			responseBody.put("err","加入失败");
+			responseBody.put("err","加入失败，服务器错误或者已经加入");
 		}else{
 			responseBody.put("code",200);
 			responseBody.put("groups",groups);
+			SpringWebSocketHandler.addRoom(user.getId(),groups.getId());
 		}
 		return JSON.toJSONString(responseBody);
 	}
@@ -122,6 +125,7 @@ public class JsonApiController {
 		}else{
 			responseBody.put("code",200);
 			responseBody.put("groups",groups);
+			SpringWebSocketHandler.delRoom(user.getId(),groups.getId());
 		}
 		return JSON.toJSONString(responseBody);
 	}

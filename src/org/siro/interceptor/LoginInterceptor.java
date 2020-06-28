@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor implements HandlerInterceptor {
 	//登录检查,实现接口里的这个方法
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		//判断session中是否有"USER_IN_SESSION"的key
+		//判断session中是否有"User"的key
 		HttpSession session = request.getSession();
 		Object user = session.getAttribute("User");
 		if (user == null){

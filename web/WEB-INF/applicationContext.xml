@@ -37,9 +37,11 @@
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/javatest?useUnicode=true&amp;characterEncoding=utf-8"/>
+        
+       <property name="url" value="jdbc:mysql://localhost/javatest?useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="username" value="root"/>
-        <property name="password" value="1234"/>
+        
+       <property name="password" value="1234"/>
     </bean>
     <!-- 配置SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -89,6 +91,10 @@
             <!--排除登录页面-->
             <mvc:exclude-mapping path="/index"/>
             <mvc:exclude-mapping path="/Login"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/fonts/**"/>
+            <mvc:exclude-mapping path="/img/**"/>
             <!-- 拦截器类-->
             <bean class="org.siro.interceptor.LoginInterceptor"/>
         </mvc:interceptor>

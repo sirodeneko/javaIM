@@ -17,7 +17,7 @@ public class SpringWebSocketConfig implements WebSocketConfigurer {
 
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		registry.addHandler(webSocketHandler(),"/ws")
-				.addInterceptors(new SpringWebSocketHandlerInterceptor()).setAllowedOrigins("http:http://localhost:8080");
+				.addInterceptors(new SpringWebSocketHandlerInterceptor()).setAllowedOrigins("*");
 
 		registry.addHandler(webSocketHandler(), "/sockjs/socketServer")
 				.addInterceptors(new SpringWebSocketHandlerInterceptor()).withSockJS();

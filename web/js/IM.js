@@ -14,10 +14,7 @@ var app = new Vue({
         },
         msgs: [],
         websock: null,
-        createRoomForm: {
-            name: "",
-            type: 1
-        },
+        createRoomForm: "",
         toMsg: {
             type: "",
             content: ""
@@ -34,7 +31,17 @@ var app = new Vue({
         //聊天室列表map，聊天室唯一id:聊天室消息
         Rooms: new Map(),
         showMoreBox:false,
+        showSearchBox:false,
+        searchText:"",
         searchResult:[],
+        joinRoom:{
+            id: 0,
+            name:"呀嚯",
+            master:0,
+        },
+        showJoinBox:false,
+        showAddBox:false,
+        createText:"",
     },
     created() {
         this.initWebSocket();
@@ -122,7 +129,7 @@ var app = new Vue({
             this.chatMain.groupName = this.Rooms.get(this.listRooms[index]).name;
             this.msgs = this.Rooms.get(this.listRooms[index]).msgs;
             this.scrollToBottom();
-            console.log(this.isFocus);
+            //console.log(this.isFocus);
         },
         putMsg() {
             if (this.toMsg.content !== "") {
@@ -146,8 +153,8 @@ var app = new Vue({
             // if (this.listRooms[this.isFocus]==data.to){
             //     this.msgs.push(data);
             // }
-            console.log(data);
-            console.log(this.msgs);
+            //console.log(data);
+            //console.log(this.msgs);
             this.$nextTick(() => {
                 //console.log(3);
                 if(f==1){
@@ -184,6 +191,97 @@ var app = new Vue({
                     });
             });
         },
+        putSearchText(){
+            // 查询聊天室
+            this.showSearch();
+            axios.post("http://"+window.location.host+"/api/SearchGroup","name="+this.searchText)
+                .then(res => {
+                    this.searchResult=res.data.groups;
+                    //console.log(res.data.groups);
+                    //console.log(this.searchResult);
+                }).catch((e)=>{
+                    this.$notify.error({
+                        title: '错误',
+                        message: "查询失败"+e,
+                    });
+                this.searchResult=[];
+            });
+        },
+        showSearch(){
+            //console.log("5555");
+            if(!this.showSearchBox){
+                this.showSearchBox=true;
+                document.addEventListener('click', this.handleBodyClick2, false);
+            }
+            this.searchResult=[];
+        },
+        hideSearch(){
+            this.showSearchBox=false;
+            document.addEventListener('click', this.handleBodyClick2, false);
+        },
+        joinTheRoom(item){
+            this.hideSearch();
+            this.joinRoom=item;
+            this.showJoinBox=true;
+            //console.log(item);
+        },
+        addARoom(){
+            this.showAddBox=true;
+        },
+        joinRoomOK(){
+            axios.post("http://"+window.location.host+"/api/JoinGroup","to="+this.joinRoom.id)
+                .then(res => {
+                    if(res.data.code==200){
+                        this.listRooms.push(res.data.groups.id);
+                        this.Rooms.set(res.data.groups.id,res.data.groups);
+                        this.Rooms.get(res.data.groups.id).msgs=[];
+                        console.log(this.Rooms);
+                        this.$notify({
+                            title: '成功',
+                            message: '加入成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$notify.error({
+                            title: '错误',
+                            message: "加入失败:"+res.data.err,
+                        });
+                    }
+
+                }).catch((e)=>{
+                    this.$notify.error({
+                        title: '错误',
+                        message: "加入失败"+e,
+                    });
+            }).finally((e)=>{this.showJoinBox=false;});
+        },
+        createRoom(){
+            axios.post("http://"+window.location.host+"/api/CreateGroup","name="+this.createText)
+                .then(res => {
+                    if(res.data.code==200){
+                        this.listRooms.push(res.data.groups.id);
+                        this.Rooms.set(res.data.groups.id,res.data.groups);
+                        this.Rooms.get(res.data.groups.id).msgs=[];
+                        console.log(this.Rooms);
+                        this.$notify({
+                            title: '成功',
+                            message: '创建成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$notify.error({
+                            title: '错误',
+                            message: "创建失败失败:"+res.data.err,
+                        });
+                    }
+
+                }).catch((e)=>{
+                this.$notify.error({
+                    title: '错误',
+                    message: "创建失败失败"+e,
+                });
+            }).finally((e)=>{this.showAddBox=false;});
+        },
         //滚动到底部
         scrollToBottom(){
             let msg = document.getElementById('im-c-msg');
@@ -194,6 +292,7 @@ var app = new Vue({
         },
         initWebSocket() {
             //初始化weosocket
+
             const wsuri = "ws://" + window.location.host + "/ws";
             this.websock = new WebSocket(wsuri);
             this.websock.onmessage = this.websocketonmessage;
@@ -269,9 +368,14 @@ var app = new Vue({
             this.websocketClosed("连接close");
         },
         handleBodyClick(e) {
-            console.log("666");
+            //console.log("666");
             if (!this.$refs.More1.contains(e.target)&&!this.$refs.More2.contains(e.target)) {
-                this.hideMore()
+                this.hideMore();
+            }
+        },
+        handleBodyClick2(e){
+            if (!this.$refs.SearchBox1.contains(e.target)&&!this.$refs.SearchBox2.contains(e.target)) {
+                this.hideSearch();
             }
         }
 

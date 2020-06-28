@@ -2,12 +2,43 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="IM:war exploded" />
+      <artifact name="IM:war" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5ef0d15-50a5-4af3-8167-f869eef06888" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/siro/tools/SHA256.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/css/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/img/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/img/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/img/x.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/img/x2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IM.eml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/Controller/IMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/Controller/IMController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/Controller/JsonApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/Controller/JsonApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/config/SpringWebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/config/SpringWebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/handler/SpringWebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/handler/SpringWebSocketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/interceptor/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/siro/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/siro/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/views/success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/views/success.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/IM.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/IM.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/IM.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/IM.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,9 +72,9 @@
         <option value="FxmlFile" />
         <option value="Jsp File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -61,7 +92,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/IM_war_exploded/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/IM_war" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -69,25 +100,26 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.19977038" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\javatest\IM\out\artifacts\IM_war_exploded\img" />
-      <recent name="E:\javatest\IM\web\img" />
-      <recent name="E:\javatest\IM\web\css\fonts" />
-      <recent name="E:\javatest\IM\lib" />
-      <recent name="E:\javatest\IM\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\javatest\IM\web\css\fonts" />
       <recent name="E:\javatest\IM\web\img" />
       <recent name="E:\javatest\IM\src\org\siro" />
       <recent name="E:\javatest\IM\src" />
       <recent name="E:\javatest\IM\src\org\siro\service\impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\javatest\IM\IM_war" />
+      <recent name="E:\javatest\IM\out\artifacts\IM_war_exploded" />
       <recent name="E:\javatest\IM\web" />
+      <recent name="E:\javatest\IM\out\artifacts\IM_war_exploded\css\fonts" />
+      <recent name="E:\javatest\IM\web\css\fonts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -102,7 +134,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.312">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.siro.test.Test" />
       <module name="IM" />
@@ -290,7 +322,20 @@
       <workItem from="1591287330482" duration="3368000" />
       <workItem from="1591324933033" duration="20343000" />
       <workItem from="1591362955928" duration="11021000" />
-      <workItem from="1591428541910" duration="241000" />
+      <workItem from="1591428541910" duration="16760000" />
+      <workItem from="1591697130313" duration="5269000" />
+      <workItem from="1591703374426" duration="1077000" />
+      <workItem from="1591706459999" duration="8493000" />
+      <workItem from="1591780441064" duration="12339000" />
+      <workItem from="1591841392885" duration="613000" />
+      <workItem from="1591862908091" duration="4609000" />
+      <workItem from="1591933657038" duration="2377000" />
+      <workItem from="1592039241043" duration="1406000" />
+      <workItem from="1592202174830" duration="4494000" />
+      <workItem from="1592839796186" duration="427000" />
+      <workItem from="1592981263322" duration="6476000" />
+      <workItem from="1593252222390" duration="10913000" />
+      <workItem from="1593311861303" duration="15058000" />
     </task>
     <servers />
   </component>
@@ -302,7 +347,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

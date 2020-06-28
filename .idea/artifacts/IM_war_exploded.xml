@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="IM:war exploded">
+  <artifact type="war" name="IM:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/IM_war_exploded</output-path>
-    <root id="root">
+    <root id="archive" name="IM_war exploded.war">
       <element id="javaee-facet-resources" facet="IM/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -11,7 +11,13 @@
           <element id="library" level="project" name="slf4j-api-1.7.22" />
           <element id="library" level="project" name="mysql-connector-java-5.1.37-bin" />
           <element id="library" level="project" name="lib (2)" />
+          <element id="library" level="project" name="spring-websocket-5.2.3.RELEASE" />
+          <element id="library" level="project" name="log4j-api-2.13.3" />
+          <element id="library" level="project" name="log4j-1.2-api-2.13.3" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

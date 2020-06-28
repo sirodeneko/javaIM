@@ -5,6 +5,7 @@ import org.hibernate.query.Query;
 import org.siro.dao.UserDao;
 import org.siro.entity.User;
 import org.siro.entity.UserAndGroup;
+import org.siro.tools.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ public class UserDaoImpl implements UserDao {
 	public User createUser(User user) {
 		try{
 			// 新建用户
+			user.setPwd(SHA256.GetSHAString(user.getPwd()));
 			sessionFactory.getCurrentSession().save(user);
 			// 自动加入聊天室1
 			UserAndGroup userAndGroup=new UserAndGroup();

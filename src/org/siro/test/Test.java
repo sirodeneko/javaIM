@@ -1,34 +1,36 @@
 package org.siro.test;
 
-import org.springframework.web.socket.WebSocketSession;
-
-import java.util.Collections;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
+import org.siro.tools.SHA256;
 
 public class Test {
-	private static ConcurrentHashMap<String, WebSocketSession> users;  //Map来存储WebSocketSession，key用USER_ID 即在线用户列表
-	private static ConcurrentHashMap<Integer, CopyOnWriteArraySet<Integer>> rooms;
+//	private static ConcurrentHashMap<String, WebSocketSession> users;  //Map来存储WebSocketSession，key用USER_ID 即在线用户列表
+//	private static ConcurrentHashMap<Integer, CopyOnWriteArraySet<Integer>> rooms;
 
 
-	static {
-		// 线程安全map
-		// id : session
-		users =  new ConcurrentHashMap<String, WebSocketSession>();
-		// roomId : idList
-		rooms = new ConcurrentHashMap<Integer, CopyOnWriteArraySet<Integer>>();
-	}
+//	static {
+//		// 线程安全map
+//		// id : session
+//		users =  new ConcurrentHashMap<String, WebSocketSession>();
+//		// roomId : idList
+//		rooms = new ConcurrentHashMap<Integer, CopyOnWriteArraySet<Integer>>();
+//	}
 	public static void main(String[] args) {
 
-		System.out.println(rooms.get(1));
-		rooms.put(1,new CopyOnWriteArraySet<Integer>(Collections.singleton(1)));
-		rooms.get(1).add(2);
-		rooms.get(1).add(3);
-		rooms.get(1).add(4);
-		rooms.get(1).add(5);
-		for (int userId : rooms.get(1)){
-			System.out.println(userId);
-		}
+		String s=SHA256.GetSHAString("999999999");
+		//s="d76c69b4e668dc1f7487523cd492248d3b23fa7b43f62f8c166350e6a68bde9e";
+		System.out.println(s);
+		System.out.println(SHA256.JudgeString("999999999",s));
+		//a9378ba6243908d28b59f371363e57381450bfc74a6dc5d932eb5d40d22fa19df5ddef8be1c078a1
+
+//		System.out.println(rooms.get(1));
+//		rooms.put(1,new CopyOnWriteArraySet<Integer>(Collections.singleton(1)));
+//		rooms.get(1).add(2);
+//		rooms.get(1).add(3);
+//		rooms.get(1).add(4);
+//		rooms.get(1).add(5);
+//		for (int userId : rooms.get(1)){
+//			System.out.println(userId);
+//		}
 
 //		//获取加载配置管理类
 //		Configuration configuration = new Configuration();

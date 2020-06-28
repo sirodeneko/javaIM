@@ -6,25 +6,48 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="http://cdn.xiaosiro.cn/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.xiaosiro.cn/css/style.css">
+    <title>Login</title>
 </head>
 <body>
-<div class="top">
-    <p>账户登陆</p>
-</div>
+    <img src="http://cdn.xiaosiro.cn/img/back.png" alt="" class="wave">
+    <div class="container">
+        <div class="img">
 
-<div class="middle">
-    <form action="/Login" method="post">
-
-        <span class="erro">${msg}</span>
-        <span class="s1"></span>
-        <span class="s2"></span>
-        <input type="text" name="name" value=""  class="iputs"/>
-        <input type="password" name="pwd" value="" class="iputs"/>
-        <input type="submit" value="登陆"/>
-    </form>
-</div>
+        </div>
+        <div class="login-box">
+            <form action="/Login" method="post">
+                <img src="http://cdn.xiaosiro.cn/img/11.png" alt="" class="avatar">
+                <h2>Welcome to IM</h2>
+                <div class="input-group">
+                    <div class="icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Username</h5>
+                        <input type="text" class="input" name="name">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="icon">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>Password</h5>
+                        <input type="password" class="input" name="pwd">
+                    </div>
+                </div>
+                <div style="color:#ff4d51;font-size: 4px">${msg}</div>
+                <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+    </div>
+<script src="/js/app.js" type="text/javascript"></script>
 </body>
 </html>

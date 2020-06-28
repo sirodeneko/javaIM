@@ -58,8 +58,9 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
 			sendMsg.setType(ChatMessage.MessageType.Other);
 			sendMsg.setContent("已在别处上线！！！");
 			sendMessageToUser(Integer.toString(user.getId()), new TextMessage(JSON.toJSONString(sendMsg)));
-			users.get(Integer.toString(user.getId())).close();
+			var sessionOld= users.get(Integer.toString(user.getId()));
 			users.put(Integer.toString(user.getId()),session);
+			sessionOld.close();
 			// 用户重复上线 因为已经存rooms集合了，不需要再次处理
 		}else{
 			users.put(Integer.toString(user.getId()),session);
@@ -79,10 +80,6 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
 
 
 		//System.out.println("当前线上用户数量:"+users.size());
-
-		//这块会实现自己业务，比如，当用户登录后，会把离线消息推送给用户
-		//TextMessage returnMessage = new TextMessage("成功建立socket连接，你将收到的离线");
-		//session.sendMessage(returnMessage);
 	}
 
 	/**
@@ -219,5 +216,20 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
 //				e.printStackTrace();
 //			}
 //		}
+	}
+
+	public static void addRoom(int userID,int groupID){
+		// 如果这个房间为不为空 就将用户加入房间id对应的set集合，如果为空就新建一个键值对
+		if(rooms.get(groupID)!=null){
+			rooms.get(groupID).add(userID);
+		}else {
+			rooms.put(groupID,new CopyOnWriteArraySet<Integer>(Collections.singleton(userID)));
+		}
+	}
+
+	public static void delRoom(int userID,int groupID){
+		if(rooms.get(groupID)!=null){
+			rooms.get(groupID).remove(userID);
+		}
 	}
 }
